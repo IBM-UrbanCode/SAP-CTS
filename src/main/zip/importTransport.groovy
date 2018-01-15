@@ -4,7 +4,7 @@ import com.urbancode.air.sapcts.CTSHelper
 def apTool = new AirPluginTool(this.args[0], this.args[1])
 def props = apTool.getStepProperties()
 
-def transportRequest = props['transportRequest'].trim()
+def transportRequest = props['transportRequest']
 String sapsid = props['sapsid'].trim()
 String clientNumber = props['clientNumber'].trim()
 String pf = props['pf'].trim()
