@@ -3,7 +3,7 @@
 Note: This is not the plugin distributable! This is the source code. To find the installable plugin, go to the plug-in page on the [IBM UrbanCode Plug-ins microsite](https://developer.ibm.com/urbancode/plugins).
 
 ### License
-This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).0
+This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
 
 ### Overview
 The Change and Transport System (CTS) helps you to organize development projects and transport the changes between the SAP systems in your system landscape.
