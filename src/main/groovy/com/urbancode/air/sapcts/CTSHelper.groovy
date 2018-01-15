@@ -37,7 +37,7 @@ class CTSHelper {
             cmdArgs << "pf=$pf"
         }
 
-        helper.runCommand("Transporting '$transportRequest'", cmdArgs)
+        helper.runCommand("Adding to buffer: '$transportRequest'", cmdArgs)
     }
 
     public importTransports (String transportRequest) {
@@ -57,6 +57,6 @@ class CTSHelper {
             cmdArgs << "pf=$pf"
         }
 
-        helper.runCommand("Transporting '$transportRequest'", cmdArgs)
+        helper.runCommand("Importing: '$transportRequest'", cmdArgs)
     }
 }
