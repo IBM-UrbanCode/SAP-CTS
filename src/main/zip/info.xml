@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginInfo>
+  <!-- Do not change the release-version, the build process injects it. -->
+  <release-version>#RELEASE_VERSION#</release-version>
+
+  <release-notes>
+    <release-note plugin-version="1">
+      Initial release of the SAP Change and Transport System plug-in.
+    </release-note>
+  </release-notes>
+</pluginInfo>
+
+
