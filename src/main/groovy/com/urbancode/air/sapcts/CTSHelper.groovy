@@ -4,21 +4,34 @@ import com.urbancode.air.AirPluginTool
 import com.urbancode.air.CommandHelper
 
 class CTSHelper {
+    String sapUrl
     String sapsid
     String clientNumber
     String pf
+    String ctsattach
     CommandHelper helper
 
     public CTSHelper (
-    String sapsid,
-    String clientNumber,
-    String pf)
+        String sapsid,
+        String clientNumber,
+        String pf)
     {
         this.sapsid = sapsid
         this.clientNumber = clientNumber
         this.pf = pf
     }
 
+    public CTSHelper (
+        String sapUrl,
+        String clientNumber,
+        String sapsid,
+        String ctsattach)
+    {
+        this.sapUrl = sapUrl
+        this.clientNumber = clientNumber
+        this.sapsid = sapsid
+        this.ctsattach = ctsattach
+    }
 
     public addToBuffer (String transportRequest) {
 
@@ -58,5 +71,26 @@ class CTSHelper {
         }
 
         helper.runCommand("Importing: '$transportRequest'", cmdArgs)
+    }
+
+    public addToTransport (String username, String password, String filename, String application) {
+
+        helper = new CommandHelper()
+
+        def cmdArgs = [ctsattach]
+
+        cmdArgs << "-url"
+        cmdArgs << sapUrl + "/" + clientNumber + "/export_cts_ws"
+        cmdArgs << "-f"
+        cmdArgs << filename
+        cmdArgs << "-sid"
+        cmdArgs << sapsid
+        cmdArgs << "-a"
+        cmdArgs << application
+
+        helper.addEnvironmentVariable("CTS_USER", username)
+        helper.addEnvironmentVariable("CTS_PASSWORD", password)
+
+        helper.runCommand("Adding file $filename to transport request", cmdArgs)
     }
 }

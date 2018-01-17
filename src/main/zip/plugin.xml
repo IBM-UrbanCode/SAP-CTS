@@ -95,4 +95,71 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}"/>
     </command>
   </step-type>
+  <step-type name="Add File to Transport">
+    <description>Attaches a given file to an ABAP CTS transport request.</description>
+    <properties>
+      <property name="ctsattach" required="true">
+        <property-ui type="textBox"
+                     label="CTS-Attach Location"
+                     default-value="${p?:resource/sap.ctsattach}"
+                     description="The path to the install directory for the cts-attach tool. See plug-in documentation for more information. (ex. /."/>
+      </property>
+      <property name="sapUrl" required="true">
+        <property-ui type="textBox"
+                     label="SAP Url"
+                     default-value="${p?:resource/sap.url}"
+                     description="Host name and port for the SAP server. (ex. http://hostname.sap.com:5555"/>
+      </property>
+      <property name="ctsUser" required="true">
+        <property-ui type="textBox"
+                     label="CTS Username"
+                     default-value="${p?:resource/sap.username}"
+                     description="Username for CTS"/>
+      </property>
+      <property name="ctsPass" required="true">
+        <property-ui type="secureBox"
+                     label="CTS Password"
+                     default-value="${p?:resource/sap.password}"
+                     description="Password for CTS"/>
+      </property>
+      <property name="clientNumber" required="true">
+        <property-ui type="textBox"
+                     label="Client Number"
+                     default-value="${p?:resource/sap.client}"
+                     description="The number for the client on the target system."/>
+      </property>
+      <property name="sapsid" required="true">
+        <property-ui type="textBox"
+                     label="SAP System ID"
+                     default-value="${p?:resource/sap.sid}"
+                     description="System identifier of the upload system."/>
+      </property>
+      <property name="filename" required="true">
+        <property-ui type="textBox"
+                     label="File"
+                     description="The full or relative path and name of the file to be added to the transport request. (ex. ./file.mtar)"/>
+      </property>
+      <property name="application" required="true">
+        <property-ui type="textBox"
+                     label="Application"
+                     default-value="${p?:resource/sap.application}"
+                     description="The application type of the file.  (ex. HCP)"/>
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+ if (properties.get("exitCode") != 0) {
+ properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+ }
+ else {
+ properties.put("Status", "Success");
+ }
+ ]]></post-processing>
+    <command program="${GROOVY_HOME}/bin/groovy">
+      <arg value="-cp"/>
+      <arg path="classes:lib/securedata.jar:lib/jettison-1.1.jar:lib/commons-codec.jar:lib/CommonsUtil.jar"/>
+      <arg file="addFileToTransport.groovy"/>
+      <arg file="${PLUGIN_INPUT_PROPS}"/>
+      <arg file="${PLUGIN_OUTPUT_PROPS}"/>
+    </command>
+  </step-type>
 </plugin>
