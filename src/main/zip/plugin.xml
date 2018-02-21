@@ -10,6 +10,12 @@
   <step-type name="Add to Buffer">
     <description>Add the transport number to the buffer to be imported.</description>
     <properties>
+      <property name="tpLocation">
+        <property-ui type="textBox"
+                     label="tp Path"
+                     default-value="/usr/sap/${p:resource/sap.sid}/SYS/exe/run/tp"
+                     description="Path to the transport control program (tp) on the system. Default location is '/usr/sap/${p:resource/sap.sid}/SYS/exe/run/tp'."/>
+      </property>
       <property name="transportRequest" required="true">
         <property-ui type="textAreaBox"
                      label="Transport Request Number"
@@ -26,7 +32,7 @@
         <property-ui type="textBox"
                      label="Client Number"
                      default-value="${p?:resource/sap.client}"
-                     description="The number for the client on the target system."/>
+                     description="The number for the client on the target system. (ie. 100)"/>
       </property>
       <property name="pf">
         <property-ui type="textBox"
@@ -54,11 +60,16 @@
   <step-type name="Import">
     <description>Import the transports added to the buffer.</description>
     <properties>
+      <property name="tpLocation">
+        <property-ui type="textBox"
+                     label="tp Path"
+                     default-value="/usr/sap/${p:resource/sap.sid}/SYS/exe/run/tp"
+                     description="Path to the transport control program (tp) on the system. Default location is '/usr/sap/${p:resource/sap.sid}/SYS/exe/run/tp'."/>
+      </property>
       <property name="transportRequest" required="true">
         <property-ui type="textAreaBox"
                      label="Transport Request Number"
                      description="Newline delimited list of transport request numbers to add to the buffer (ie. DEV12345).  Also accepts a filename with a list of transport numbers."/>
-
       </property>
       <property name="sapsid" required="true">
         <property-ui type="textBox"
@@ -70,7 +81,7 @@
         <property-ui type="textBox"
                      label="Client Number"
                      default-value="${p?:resource/sap.client}"
-                     description="The number for the client on the target system."/>
+                     description="The number for the client on the target system. (ie. 100)"/>
       </property>
       <property name="pf">
         <property-ui type="textBox"

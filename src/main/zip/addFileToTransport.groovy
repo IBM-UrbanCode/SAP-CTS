@@ -19,7 +19,7 @@ while (sapUrl.endsWith(REPO_PATH_SEPARATOR)) {
     sapUrl = sapUrl.substring(0, sapUrl.length() - 1)
 }
 
-helper = new CTSHelper(sapUrl, clientNumber, sapsid, ctsattach)
+helper = new CTSHelper(null, sapsid, clientNumber, null, sapUrl, ctsattach)
 
 if (new File(filename).isFile()) {
     helper.addToTransport(ctsUsername, ctsPassword, filename, application)

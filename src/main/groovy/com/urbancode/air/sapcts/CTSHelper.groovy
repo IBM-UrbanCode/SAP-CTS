@@ -4,6 +4,7 @@ import com.urbancode.air.AirPluginTool
 import com.urbancode.air.CommandHelper
 
 class CTSHelper {
+    String tp
     String sapUrl
     String sapsid
     String clientNumber
@@ -12,32 +13,32 @@ class CTSHelper {
     CommandHelper helper
 
     public CTSHelper (
+        String tp,
         String sapsid,
         String clientNumber,
-        String pf)
+        String pf,
+        String sapUrl,
+        String ctsattach)
     {
+        this.tp = tp
         this.sapsid = sapsid
         this.clientNumber = clientNumber
         this.pf = pf
-    }
-
-    public CTSHelper (
-        String sapUrl,
-        String clientNumber,
-        String sapsid,
-        String ctsattach)
-    {
         this.sapUrl = sapUrl
-        this.clientNumber = clientNumber
-        this.sapsid = sapsid
         this.ctsattach = ctsattach
     }
 
     public addToBuffer (String transportRequest) {
 
         helper = new CommandHelper()
+        def cmdArgs
 
-        def cmdArgs = ["tp"]
+        if (tp) {
+            cmdArgs << [tp]
+        }
+        else {
+            cmdArgs << "/usr/sap/${sapsid}/SYS/exe/run/tp"
+        }
 
         cmdArgs << "addtobuffer"
         cmdArgs << "$transportRequest"
@@ -56,8 +57,14 @@ class CTSHelper {
     public importTransports (String transportRequest) {
 
         helper = new CommandHelper()
+        def cmdArgs
 
-        def cmdArgs = ["tp"]
+        if (tp) {
+            cmdArgs << [tp]
+        }
+        else {
+            cmdArgs << "/usr/sap/${sapsid}/SYS/exe/run/tp"
+        }
 
         cmdArgs << "import"
         cmdArgs << "$transportRequest"
