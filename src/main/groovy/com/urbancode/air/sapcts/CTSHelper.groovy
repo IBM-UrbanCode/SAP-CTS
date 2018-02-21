@@ -34,10 +34,10 @@ class CTSHelper {
         def cmdArgs
 
         if (tp) {
-            cmdArgs << [tp]
+            cmdArgs = [tp]
         }
         else {
-            cmdArgs << "/usr/sap/${sapsid}/SYS/exe/run/tp"
+            cmdArgs = ["/usr/sap/${sapsid}/SYS/exe/run/tp"]
         }
 
         cmdArgs << "addtobuffer"
@@ -60,10 +60,10 @@ class CTSHelper {
         def cmdArgs
 
         if (tp) {
-            cmdArgs << [tp]
+            cmdArgs = [tp]
         }
         else {
-            cmdArgs << "/usr/sap/${sapsid}/SYS/exe/run/tp"
+            cmdArgs = ["/usr/sap/${sapsid}/SYS/exe/run/tp"]
         }
 
         cmdArgs << "import"

@@ -37,8 +37,8 @@
       <property name="pf">
         <property-ui type="textBox"
                      label="Profile Name"
-                     default-value="${p?:resource/sap.pf}"
-                     description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_DEV.PFL)"/>
+                     default-value="/usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL"
+                     description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL)"/>
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -86,8 +86,8 @@
       <property name="pf">
         <property-ui type="textBox"
                      label="Profile Name"
-                     default-value="${p?:resource/sap.pf}"
-                     description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_DEV.PFL)"/>
+                     default-value="/usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL"
+                     description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL)"/>
       </property>
     </properties>
     <post-processing><![CDATA[
