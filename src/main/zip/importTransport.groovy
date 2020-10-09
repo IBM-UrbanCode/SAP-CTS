@@ -10,6 +10,7 @@ String sapsid = props['sapsid'].trim()
 String clientNumber = props['clientNumber'].trim()
 String pf = props['pf'].trim()
 
+
 def helper = new CTSHelper(tp, sapsid, clientNumber, pf, null, null)
 
 if(new File(transportRequest).isFile()) {
@@ -19,7 +20,7 @@ if(new File(transportRequest).isFile()) {
 }
 else {
     transportRequest.split('\n|,')*.trim().each { transport ->
-        helper.importTransports(transport)
+        helper.importTransports(transport, props)
     }
 }
 

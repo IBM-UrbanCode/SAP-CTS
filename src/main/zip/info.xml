@@ -7,6 +7,10 @@
     <release-note plugin-version="1">
       Initial release of the SAP Change and Transport System plug-in.
     </release-note>
+    
+    <release-note plugin-version="2">
+      Added option to provide additional arguments to import Transport Step
+    </release-note>    
   </release-notes>
 </pluginInfo>
 

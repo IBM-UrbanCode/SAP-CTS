@@ -3,4 +3,20 @@
         xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+
+  <migrate to-version="2">
+    <migrate-command name="Import">
+      <migrate-properties>
+        <migrate-property name="leaveTransportRequestInQueueForLaterImport" default="false"/>
+        <migrate-property name="importTransportRequestAgain" default="false"/>
+        <migrate-property name="overwriteOriginals" default="false"/>
+        <migrate-property name="overwriteObjectsInUnconfirmedRepairs" default="false"/>
+        <migrate-property name="ignoreNonPermittedTransportType" default="false"/>
+        <migrate-property name="ignoreNonPermittedTableClass" default="false"/>
+        <migrate-property name="ignorePredecessorRelations" default="false"/>
+        <migrate-property name="ignoreInvalidComponentVersion" default="false"/>        
+      </migrate-properties>
+    </migrate-command>
+  </migrate>
+  
 </plugin-upgrade>
