@@ -3,7 +3,7 @@
            xmlns:server="http://www.urbancode.com/PluginServerXMLSchema_v1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier id="com.urbancode.air.plugin.SAPCTS" name="SAP Change and Transport System" version="2"/>
+    <identifier id="com.urbancode.air.plugin.SAPCTS" name="SAP Change and Transport System" version="3"/>
     <description>Plug-in to interact with the SAP Change and Transport System.</description>
     <tag>SAP/Change and Transport System</tag>
   </header>
@@ -129,6 +129,12 @@
                      default-value="/usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL"
                      description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL)"/>
       </property>
+      <property name="ignoreExitValue">
+        <property-ui type="checkBox"
+                     label="Ignore Exit Value"
+                     default-value="false"
+                     description="Ignore Exit value."/>
+      </property> 	      
     </properties>
     <post-processing><![CDATA[
  if (properties.get("exitCode") != 0) {

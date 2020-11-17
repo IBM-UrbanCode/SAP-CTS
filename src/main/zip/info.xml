@@ -10,7 +10,12 @@
     
     <release-note plugin-version="2">
       Added option to provide additional arguments to import Transport Step
-    </release-note>    
+    </release-note> 
+    
+    <release-note plugin-version="3">
+      Added option to ignore exit value and ignore exception thrown on failure.
+    </release-note>
+           
   </release-notes>
 </pluginInfo>
 

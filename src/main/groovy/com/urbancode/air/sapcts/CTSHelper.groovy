@@ -64,6 +64,7 @@ class CTSHelper {
 		def ignoreNonPermittedTableClass  = props['ignoreNonPermittedTableClass']?.toBoolean()
 		def ignorePredecessorRelations  = props['ignorePredecessorRelations']?.toBoolean()
 		def ignoreInvalidComponentVersion  = props['ignoreInvalidComponentVersion']?.toBoolean()
+		def ignoreExitValue  = props['ignoreExitValue']?.toBoolean()
 		
         helper = new CommandHelper()
         def cmdArgs
@@ -137,7 +138,12 @@ class CTSHelper {
 			cmdArgs << options
 		}
 		
-        helper.runCommand("Importing: '$transportRequest'", cmdArgs)
+		helper.ignoreExitValue = ignoreExitValue
+		
+		int code = helper.runCommand("Importing: '$transportRequest'", cmdArgs)
+		
+		return code
+		
     }
 
     public addToTransport (String username, String password, String filename, String application) {
