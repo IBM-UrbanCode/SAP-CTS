@@ -10,17 +10,17 @@ String sapsid = props['sapsid'].trim()
 String clientNumber = props['clientNumber'].trim()
 String pf = props['pf'].trim()
 
-def helper = new CTSHelper(tp, sapsid, clientNumber, pf, null, null)
 
+def helper = new CTSHelper(tp, sapsid, clientNumber, pf, null, null)
+int code
 if(new File(transportRequest).isFile()) {
     transportRequest.eachLine { transport ->
-        helper.importTransports(transport)
+        code = helper.importTransports(transport)
     }
 }
 else {
     transportRequest.split('\n|,')*.trim().each { transport ->
-        helper.importTransports(transport)
+        code = helper.importTransports(transport, props)
     }
 }
-
-System.exit(0)
+System.exit(code)

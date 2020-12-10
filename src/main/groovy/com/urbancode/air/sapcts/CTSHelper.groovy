@@ -54,8 +54,18 @@ class CTSHelper {
         helper.runCommand("Adding to buffer: '$transportRequest'", cmdArgs)
     }
 
-    public importTransports (String transportRequest) {
+    public importTransports (String transportRequest, Properties props) {
 
+		def leaveTransportRequestInQueueForLaterImport  = props['leaveTransportRequestInQueueForLaterImport']?.toBoolean()
+		def importTransportRequestAgain    = props['importTransportRequestAgain']?.toBoolean()
+		def overwriteOriginals   = props['overwriteOriginals']?.toBoolean()
+		def overwriteObjectsInUnconfirmedRepairs  = props['overwriteObjectsInUnconfirmedRepairs']?.toBoolean()
+		def ignoreNonPermittedTransportType  = props['ignoreNonPermittedTransportType']?.toBoolean()
+		def ignoreNonPermittedTableClass  = props['ignoreNonPermittedTableClass']?.toBoolean()
+		def ignorePredecessorRelations  = props['ignorePredecessorRelations']?.toBoolean()
+		def ignoreInvalidComponentVersion  = props['ignoreInvalidComponentVersion']?.toBoolean()
+		def ignoreExitValue  = props['ignoreExitValue']?.toBoolean()
+		
         helper = new CommandHelper()
         def cmdArgs
 
@@ -76,8 +86,64 @@ class CTSHelper {
         if (pf) {
             cmdArgs << "pf=$pf"
         }
+		
+		String options = ""
+		
+		if(leaveTransportRequestInQueueForLaterImport
+			|| importTransportRequestAgain
+			|| overwriteOriginals
+			|| overwriteObjectsInUnconfirmedRepairs
+			|| ignoreNonPermittedTransportType
+			|| ignoreNonPermittedTableClass
+			|| ignorePredecessorRelations
+			|| ignoreInvalidComponentVersion) {
+			
+			options+="U"
+			
+		}
+		
+		if(leaveTransportRequestInQueueForLaterImport) {
+			options+="0"
+		}
+		
+		if(importTransportRequestAgain) {
+			options+="1"
+		}
+		
+		if(overwriteOriginals) {
+			options+="2"
+		}
+		
+		if(overwriteObjectsInUnconfirmedRepairs) {
+			options+="6"
+		}
+		
+		if(ignoreNonPermittedTransportType) {
+			options+="9"
+		}
+		
+		if(ignoreNonPermittedTableClass) {
+			options+="8"
+		}
+		
+		if(ignorePredecessorRelations) {
+			options+="3"
+		}
+		
+		if(ignoreInvalidComponentVersion) {
+			options+="4"
+		}
 
-        helper.runCommand("Importing: '$transportRequest'", cmdArgs)
+		if(!options.isEmpty()) {
+			cmdArgs << options
+		}
+		
+		helper.ignoreExitValue = ignoreExitValue
+		
+		int code = helper.runCommand("Importing: '$transportRequest'", cmdArgs)
+		
+		return code
+		
     }
 
     public addToTransport (String username, String password, String filename, String application) {

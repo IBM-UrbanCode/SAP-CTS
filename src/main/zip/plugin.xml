@@ -3,7 +3,7 @@
            xmlns:server="http://www.urbancode.com/PluginServerXMLSchema_v1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier id="com.urbancode.air.plugin.SAPCTS" name="SAP Change and Transport System" version="1"/>
+    <identifier id="com.urbancode.air.plugin.SAPCTS" name="SAP Change and Transport System" version="3"/>
     <description>Plug-in to interact with the SAP Change and Transport System.</description>
     <tag>SAP/Change and Transport System</tag>
   </header>
@@ -83,12 +83,58 @@
                      default-value="${p?:resource/sap.client}"
                      description="The number for the client on the target system. (ie. 100)"/>
       </property>
+      <property name="leaveTransportRequestInQueueForLaterImport">
+        <property-ui type="checkBox"
+                     label="Leave transport request in queue for later import"
+                     description="Leave transport request in queue for later import."/>
+      </property>
+      <property name="importTransportRequestAgain">
+        <property-ui type="checkBox"
+                     label="Import transport request again"
+                     description="Import transport request again."/>
+      </property>
+      <property name="overwriteOriginals">
+        <property-ui type="checkBox"
+                     label="Overwrite originals"
+                     description="Overwrite originals."/>
+      </property>
+      <property name="overwriteObjectsInUnconfirmedRepairs">
+        <property-ui type="checkBox"
+                     label="Overwrite objects in unconfirmed repairs"
+                     description="Overwrite objects in unconfirmed repairs."/>
+      </property>
+      <property name="ignoreNonPermittedTransportType">
+        <property-ui type="checkBox"
+                     label="Ignore non-permitted transport type"
+                     description="Ignore non-permitted transport type."/>
+      </property>
+      <property name="ignoreNonPermittedTableClass">
+        <property-ui type="checkBox"
+                     label="Ignore non-permitted table class"
+                     description="Ignore non-permitted table class."/>
+      </property>
+      <property name="ignorePredecessorRelations">
+        <property-ui type="checkBox"
+                     label="Ignore predecessor relations"
+                     description="Ignore predecessor relations."/>
+      </property>
+      <property name="ignoreInvalidComponentVersion">
+        <property-ui type="checkBox"
+                     label="Ignore Invalid component version"
+                     description="Ignore Invalid component version."/>
+      </property>                                                
       <property name="pf">
         <property-ui type="textBox"
                      label="Profile Name"
                      default-value="/usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL"
                      description="The path and name of the target profile. (ie. /usr/sap/trans/bin/TP_DOMAIN_${p:resource/sap.sid}.PFL)"/>
       </property>
+      <property name="ignoreExitValue">
+        <property-ui type="checkBox"
+                     label="Ignore Exit Value"
+                     default-value="false"
+                     description="Ignore Exit value."/>
+      </property> 	      
     </properties>
     <post-processing><![CDATA[
  if (properties.get("exitCode") != 0) {
